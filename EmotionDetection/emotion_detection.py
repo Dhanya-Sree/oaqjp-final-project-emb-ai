@@ -13,9 +13,9 @@ HEADERS = {
 }
 
 
-def emotion_detector(text_to_analyze):
+def emotion_detector(text_to_analyse):
     """Analyze text and return emotion scores plus the dominant emotion."""
-    payload = {'raw_document': {'text': text_to_analyze}}
+    payload = {'raw_document': {'text': text_to_analyse}}
 
     response = requests.post(url=URL, headers=HEADERS, json=payload, timeout=10)
 

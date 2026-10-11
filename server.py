@@ -1,6 +1,6 @@
 """Flask server to detect emotions using Watson NLP."""
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask(__name__)
@@ -15,14 +15,22 @@ def root():
 @app.route('/emotionDetector', methods=['GET'])
 def emotion_detector_route():
     """Detect emotions from query text and return scores with dominant emotion."""
-    text_to_analyze = request.args.get('textToAnalyze')
+    text_to_analyse = request.args.get('textToAnalyze')
 
-    response = emotion_detector(text_to_analyze)
+    response = emotion_detector(text_to_analyse)
 
     if response.get('dominant_emotion') is None:
         return 'Invalid text! Please try again!'
 
-    return jsonify(response)
+    return (
+        f"For the given statement, the system response is "
+        f"'anger': {response['anger']}, "
+        f"'disgust': {response['disgust']}, "
+        f"'fear': {response['fear']}, "
+        f"'joy': {response['joy']}, "
+        f"'sadness': {response['sadness']}. "
+        f"The dominant emotion is {response['dominant_emotion']}."
+    )
 
 
 if __name__ == '__main__':
