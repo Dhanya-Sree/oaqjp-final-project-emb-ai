@@ -1,27 +1,30 @@
 import unittest
-from emotion_detection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector
 
-class TestEmotionDetector(unittest.TestCase):
-    def test_emotion_detector(self):
-        # Test case for joy
-        result_1 = emotion_detector("I am glad this happened")
-        self.assertEqual(result_1['dominant_emotion'], 'joy')
-        
-        # Test case for anger
-        result_2 = emotion_detector("I am really mad about this")
-        self.assertEqual(result_2['dominant_emotion'], 'anger')
-        
-        # Test case for disgust
-        result_3 = emotion_detector("I feel disgusted just hearing about this")
-        self.assertEqual(result_3['dominant_emotion'], 'disgust')
-        
-        # Test case for sadness
-        result_4 = emotion_detector("I am so sad about this")
-        self.assertEqual(result_4['dominant_emotion'], 'sadness')
-        
-        # Test case for fear
-        result_5 = emotion_detector("I am really afraid that this will happen")
-        self.assertEqual(result_5['dominant_emotion'], 'fear')
 
-if __name__ == '__main__':
-    unittest.main()
+class TestDominantEmotions(unittest.TestCase):
+    def get_emotion(self, text: str) -> str:
+        emotions = emotion_detector(text)
+        return emotions.get('dominant_emotion')
+
+    def test_joy(self):
+        dominant_emotion = self.get_emotion('I am glad this happened')
+        self.assertEqual(dominant_emotion, 'joy')
+
+    def test_anger(self):
+        dominant_emotion = self.get_emotion('I am really mad about this')
+        self.assertEqual(dominant_emotion, 'anger')
+
+    def test_disgust(self):
+        dominant_emotion = self.get_emotion('I feel disgusted just hearing about this')
+        self.assertEqual(dominant_emotion, 'disgust')
+
+    def test_sadness(self):
+        dominant_emotion = self.get_emotion('I am so sad about this')
+        self.assertEqual(dominant_emotion, 'sadness')
+
+    def test_fear(self):
+        dominant_emotion = self.get_emotion('I am really afraid that this will happen')
+        self.assertEqual(dominant_emotion, 'fear')
+
+unittest.main()

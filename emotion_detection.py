@@ -1,50 +1,41 @@
-"""Module for detecting emotions using IBM Watson NLP."""
-
 import json
 import requests
 
+URL = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
 
-def emotion_detector(text_to_analyze):
-    """Analyze text using Watson NLP emotion detection."""
+HEADERS = {
+    'grpc-metadata-mm-model-id': 'emotion_aggregated-workflow_lang_en_stock'
+}
 
-    url = (
-        "https://sn-watson-emotion.labs.skills.network/"
-        "v1/watson.runtime.nlp.v1/NlpService/EmotionPredict"
-    )
+def emotion_detector(text_to_analyze: str | None) -> dict:
+    payload = {'raw_document': {'text': text_to_analyze}}
 
-    headers = {
-        "grpc-metadata-mm-model-id": (
-            "emotion_aggregated-workflow_lang_en_stock"
-        )
-    }
-
-    input_json = {
-        "raw_document": {
-            "text": text_to_analyze
-        }
-    }
-
-    response = requests.post(url, json=input_json, headers=headers, timeout=10)
+    response = requests.post(url=URL, headers=HEADERS, json=payload)
 
     if response.status_code == 400:
         return {
-            "anger": None,
-            "disgust": None,
-            "fear": None,
-            "joy": None,
-            "sadness": None,
-            "dominant_emotion": None
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None,
         }
 
-    formatted_response = json.loads(response.text)
-    emotions = formatted_response["emotionPredictions"][0]["emotion"]
+    json_response = json.loads(response.text)
 
-    return {
-        "anger": emotions["anger"],
-        "disgust": emotions["disgust"],
-        "fear": emotions["fear"],
-        "joy": emotions["joy"],
-        "sadness": emotions["sadness"],
-        "dominant_emotion": max(emotions, key=emotions.get)
-    }
-    
+    emotions = json_response.get('emotionPredictions')[0] or {}
+
+    emotions_rating = emotions.get('emotion')
+
+    dominant_emotion = ''
+    highest_score = 0
+
+    for emotion_key, emotion_value in emotions_rating.items():
+        if emotion_value > highest_score:
+            highest_score = emotion_value
+            dominant_emotion = emotion_key
+            
+    emotions_rating.update({'dominant_emotion': dominant_emotion})
+
+    return emotions_rating
