@@ -1,6 +1,6 @@
 """ Flask server to detect emotions """
 from flask import Flask, jsonify, render_template, request
-from emotion_detection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask(__name__)
 
