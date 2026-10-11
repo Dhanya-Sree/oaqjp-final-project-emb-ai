@@ -1,5 +1,5 @@
 import unittest
-from EmotionDetection.emotion_detection import emotion_detector
+from emotion_detection import emotion_detector
 
 
 class TestDominantEmotions(unittest.TestCase):
@@ -27,4 +27,5 @@ class TestDominantEmotions(unittest.TestCase):
         dominant_emotion = self.get_emotion('I am really afraid that this will happen')
         self.assertEqual(dominant_emotion, 'fear')
 
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()

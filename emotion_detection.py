@@ -24,9 +24,18 @@ def emotion_detector(text_to_analyze: str | None) -> dict:
 
     json_response = json.loads(response.text)
 
-    emotions = json_response.get('emotionPredictions')[0] or {}
+    predictions = json_response.get('emotionPredictions', [])
+    if not predictions:
+        return {
+            'anger': None,
+            'disgust': None,
+            'fear': None,
+            'joy': None,
+            'sadness': None,
+            'dominant_emotion': None,
+        }
 
-    emotions_rating = emotions.get('emotion')
+    emotions_rating = predictions[0].get('emotion', {})
 
     dominant_emotion = ''
     highest_score = 0
@@ -35,7 +44,7 @@ def emotion_detector(text_to_analyze: str | None) -> dict:
         if emotion_value > highest_score:
             highest_score = emotion_value
             dominant_emotion = emotion_key
-            
+
     emotions_rating.update({'dominant_emotion': dominant_emotion})
 
     return emotions_rating
