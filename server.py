@@ -1,21 +1,20 @@
-""" Flask server to detect emotions """
+"""Flask server to detect emotions using Watson NLP."""
+
 from flask import Flask, jsonify, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def root():
-    """ Render the main application  page"""
+    """Render the main application page."""
     return render_template('index.html')
 
 
 @app.route('/emotionDetector', methods=['GET'])
 def emotion_detector_route():
-    """ Endpoint to detect emotions based on a text
-        and return the dominant emotion based on the
-        highest score
-    """
+    """Detect emotions from query text and return scores with dominant emotion."""
     text_to_analyze = request.args.get('textToAnalyze')
 
     response = emotion_detector(text_to_analyze)
