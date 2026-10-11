@@ -1,7 +1,18 @@
-theia@theia-dhanyadhanu0:/home/project/oaqjp-final-project-emb-ai$ python3 test_emotion_detection.py
-.....
+theia@theia-dhanyadhanu0:/home/project/final_project/oaqjp-final-project-emb-ai$ python3 -m unittest test_emotion_
+detection.py -v
+test_anger (test_emotion_detection.TestDominantEmotions)
+Dominant emotion should be anger. ... ok
+test_disgust (test_emotion_detection.TestDominantEmotions)
+Dominant emotion should be disgust. ... ok
+test_fear (test_emotion_detection.TestDominantEmotions)
+Dominant emotion should be fear. ... ok
+test_joy (test_emotion_detection.TestDominantEmotions)
+Dominant emotion should be joy. ... ok
+test_sadness (test_emotion_detection.TestDominantEmotions)
+Dominant emotion should be sadness. ... ok
+
 ----------------------------------------------------------------------
-Ran 5 tests in 0.429s
+Ran 5 tests in 0.454s
 
 OK
-theia@theia-dhanyadhanu0:/home/project/oaqjp-final-project-emb-ai$ 
+theia@theia-dhanyadhanu0:/home/project/final_project/oaqjp-final-project-emb-ai$ 

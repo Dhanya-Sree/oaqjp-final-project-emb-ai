@@ -79,7 +79,7 @@ GET http://localhost:5001/emotionDetector?textToAnalyze=I+am+so+happy
 If the input text is blank or invalid, the response is:
 
 ```
-Invalid text! Please try again!.
+Invalid input!Please try again!.
 ```
 
 > **Note:** Run this inside the **IBM Skills Network Theia Lab**. The Watson NLP API endpoint is only accessible from that environment.

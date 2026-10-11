@@ -20,7 +20,7 @@ def emotion_detector_route():
     response = emotion_detector(text_to_analyse)
 
     if response.get('dominant_emotion') is None:
-        return 'Invalid text! Please try again!'
+        return 'Invalid input!Please try again!'
 
     return (
         f"For the given statement, the system response is "

@@ -16,12 +16,12 @@ def emotion_detector_route():
         and return the dominant emotion based on the
         highest score
     """
-    text_to_analyze = request.args.get('textToAnalyze')
+    text_to_analyse = request.args.get('textToAnalyze')
 
-    response = emotion_detector(text_to_analyze)
+    response = emotion_detector(text_to_analyse)
 
     if response.get('dominant_emotion') is None:
-        return 'Invalid text! Please try again!'
+        return 'Invalid input!Please try again!'
 
     return jsonify(response)
 
