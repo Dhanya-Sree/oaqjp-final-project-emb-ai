@@ -9,7 +9,7 @@ A Flask web application that uses the Watson NLP **EmotionPredict** service to a
 ```
 oaqjp-final-project-emb-ai/
 ├── emotion_detection.py      # emotion_detector() — calls Watson NLP API
-├── server.py                 # Flask app — route /emotionDetector, port 5001
+├── server.py                 # Flask app — route /emotionDetector, port 5000
 ├── test_emotion_detection.py # unit tests (5 emotion test cases)
 ├── __init__.py               # package definition
 ├── templates/
@@ -55,12 +55,12 @@ Runs 5 test cases covering: `joy`, `anger`, `disgust`, `sadness`, `fear`.
 python3 server.py
 ```
 
-Then open [http://localhost:5001](http://localhost:5001) in a browser.
+Then open [http://localhost:5000](http://localhost:5000) in a browser.
 
 ### 3 — Call the API directly
 
 ```
-GET http://localhost:5001/emotionDetector?textToAnalyze=I+am+so+happy
+GET http://localhost:5000/emotionDetector?textToAnalyze=I+am+so+happy
 ```
 
 **Sample JSON response:**
