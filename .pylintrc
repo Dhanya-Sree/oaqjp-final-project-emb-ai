@@ -1,0 +1,6 @@
+[MASTER]
+init-hook='import sys; sys.path.insert(0, ".")'
+
+[MESSAGES CONTROL]
+# EmotionDetection uses PascalCase by course requirement — suppress naming warning
+disable=C0103
