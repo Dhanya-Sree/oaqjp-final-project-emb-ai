@@ -1,0 +1,7 @@
+theia@theia-dhanyadhanu0:/home/project/oaqjp-final-project-emb-ai$ python3 test_emotion_detection.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.429s
+
+OK
+theia@theia-dhanyadhanu0:/home/project/oaqjp-final-project-emb-ai$ 

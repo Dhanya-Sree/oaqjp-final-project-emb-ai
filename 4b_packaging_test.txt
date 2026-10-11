@@ -1,0 +1,7 @@
+theia@theia-dhanyadhanu0:/home/project/oaqjp-final-project-emb-ai$ python3
+Python 3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from EmotionDetection.emotion_detection import emotion_detector
+>>> emotion_detector("I hate working long hours without music")
+{'anger': 0.5530766, 'disgust': 0.022263594, 'fear': 0.03531471, 'joy': 0.04288717, 'sadness': 0.155249, 'dominant_emotion': 'anger'}
+>>> 
